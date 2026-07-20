@@ -8,6 +8,8 @@ import (
 	"github.com/Bhandavya345/Employee-Management/models"
 	"github.com/Bhandavya345/Employee-Management/routes"
 
+	"github.com/joho/godotenv"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -17,22 +19,28 @@ func main() {
 	logger.InitLogger()
 	logger.InfoLogger.Println("Starting Employee Management Application...")
 
+	err := godotenv.Load(".env")
+
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
 	// Connect Database
 	database.ConnectDB()
 	logger.InfoLogger.Println("Database Connected Successfully")
 
 	// Auto Migrate Tables
-	err := database.DB.AutoMigrate(
+	database.DB.AutoMigrate(
 		&models.User{},
 		&models.Employee{},
 	)
 
-	if err != nil {
-		logger.ErrorLogger.Println("AutoMigrate Failed:", err)
-		log.Fatal(err)
-	}
+	// if err != nil {
+	// 	logger.ErrorLogger.Println("AutoMigrate Failed:", err)
+	// 	log.Fatal(err)
+	// }
 
-	logger.InfoLogger.Println("Database Migration Completed")
+	// logger.InfoLogger.Println("Database Migration Completed")
 
 	// Create Gin Router
 	router := gin.Default()

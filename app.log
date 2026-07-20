@@ -1,0 +1,21 @@
+INFO: 2026/07/17 16:42:49 main.go:18: Starting Employee Management Application...
+INFO: 2026/07/17 16:49:53 main.go:20: Starting Employee Management Application...
+INFO: 2026/07/17 16:49:56 main.go:30: Database Connected Successfully
+INFO: 2026/07/17 16:49:59 main.go:51: Routes Registered Successfully
+INFO: 2026/07/17 16:49:59 main.go:54: Server Running On http://localhost:8080
+INFO: 2026/07/17 16:59:46 main.go:20: Starting Employee Management Application...
+INFO: 2026/07/17 16:59:47 main.go:30: Database Connected Successfully
+INFO: 2026/07/17 16:59:47 main.go:51: Routes Registered Successfully
+INFO: 2026/07/17 16:59:47 main.go:54: Server Running On http://localhost:8080
+INFO: 2026/07/17 17:04:02 main.go:20: Starting Employee Management Application...
+INFO: 2026/07/17 17:04:02 main.go:30: Database Connected Successfully
+INFO: 2026/07/17 17:04:02 main.go:51: Routes Registered Successfully
+INFO: 2026/07/17 17:04:02 main.go:54: Server Running On http://localhost:8080
+INFO: 2026/07/20 12:07:49 main.go:20: Starting Employee Management Application...
+INFO: 2026/07/20 12:07:49 main.go:30: Database Connected Successfully
+INFO: 2026/07/20 12:07:50 main.go:51: Routes Registered Successfully
+INFO: 2026/07/20 12:07:50 main.go:54: Server Running On http://localhost:8080
+INFO: 2026/07/20 13:06:17 main.go:20: Starting Employee Management Application...
+INFO: 2026/07/20 13:06:17 main.go:30: Database Connected Successfully
+INFO: 2026/07/20 13:06:17 main.go:51: Routes Registered Successfully
+INFO: 2026/07/20 13:06:17 main.go:54: Server Running On http://localhost:8080
