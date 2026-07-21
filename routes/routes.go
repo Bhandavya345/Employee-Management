@@ -34,7 +34,7 @@ func SetupRoutes(router *gin.Engine) {
 	// -------------------------
 
 	employee := router.Group("/employees")
-	//employee.Use(middleware.AuthMiddleware())
+	employee.Use(middleware.AuthMiddleware())
 
 	{
 		employee.POST("", employeeController.CreateEmployee)
