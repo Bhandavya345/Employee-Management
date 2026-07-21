@@ -2,6 +2,7 @@ package utils
 
 import (
 	"errors"
+
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
@@ -24,7 +25,7 @@ func GenerateJWT(userID uint, email, role string) (string, error) {
 		Email:  email,
 		Role:   role,
 		RegisteredClaims: jwt.RegisteredClaims{
-			ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)),
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(10 * time.Hour)),
 			IssuedAt:  jwt.NewNumericDate(time.Now()),
 		},
 	}

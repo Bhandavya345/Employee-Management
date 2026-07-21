@@ -44,9 +44,10 @@ func AuthMiddleware() gin.HandlerFunc {
 		claims, err := utils.ValidateJWT(token)
 
 		if err != nil {
+
 			c.JSON(http.StatusUnauthorized, gin.H{
 				"success": false,
-				"message": "Invalid or Expired Token",
+				"message": err.Error(),
 			})
 			c.Abort()
 			return

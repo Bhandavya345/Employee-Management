@@ -2,6 +2,7 @@ package service
 
 import (
 	"errors"
+	"fmt"
 
 	"github.com/Bhandavya345/Employee-Management/models"
 	"github.com/Bhandavya345/Employee-Management/repository"
@@ -60,8 +61,8 @@ func (s *authService) Login(email, password string) (string, error) {
 	}
 
 	err = bcrypt.CompareHashAndPassword(
-		[]byte(user.Password),
-		[]byte(password),
+		[]byte(user.Password), // Hash from DB
+		[]byte(password),      // Password entered by user
 	)
 
 	if err != nil {
@@ -71,6 +72,7 @@ func (s *authService) Login(email, password string) (string, error) {
 	// Generate JWT Token
 	token, err := utils.GenerateJWT(user.ID, user.Email, user.Role)
 
+	fmt.Printf("Token generated for user ID: %d, Email: %s, Role: %s", user.ID, user.Email, user.Role)
 	if err != nil {
 		return "", err
 	}

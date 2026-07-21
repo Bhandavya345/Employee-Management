@@ -2,6 +2,7 @@ package routes
 
 import (
 	"github.com/Bhandavya345/Employee-Management/controller"
+	"github.com/Bhandavya345/Employee-Management/middleware"
 	"github.com/Bhandavya345/Employee-Management/repository"
 	"github.com/Bhandavya345/Employee-Management/service"
 
@@ -34,7 +35,7 @@ func SetupRoutes(router *gin.Engine) {
 	// -------------------------
 
 	employee := router.Group("/employees")
-	//employee.Use(middleware.AuthMiddleware())
+	employee.Use(middleware.AuthMiddleware())
 
 	{
 		employee.POST("", employeeController.CreateEmployee)
