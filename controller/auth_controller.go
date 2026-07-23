@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/Bhandavya345/Employee-Management/models"
@@ -65,5 +66,32 @@ func (ac *AuthController) Login(c *gin.Context) {
 
 	utils.SuccessResponse(c, http.StatusOK, "Login Successful", gin.H{
 		"token": token,
+	})
+}
+
+// GET /profile
+func (ac *AuthController) GetProfile(c *gin.Context) {
+
+	userIDValue, exists := c.Get("userID")
+	fmt.Printf("User ID from context: %v, Exists: %v\n", userIDValue, exists)
+	if !exists {
+		utils.ErrorResponse(c, http.StatusUnauthorized, "User not found")
+		return
+	}
+
+	userID := userIDValue.(uint)
+
+	user, err := ac.Service.GetProfile(userID)
+	if err != nil {
+		utils.ErrorResponse(c, http.StatusNotFound, err.Error())
+		return
+	}
+
+	utils.SuccessResponse(c, http.StatusOK, "Profile Retrieved Successfully", gin.H{
+		"id":      user.ID,
+		"name":    user.Name,
+		"email":   user.Email,
+		"role":    user.Role,
+		"role_id": user.RoleID,
 	})
 }

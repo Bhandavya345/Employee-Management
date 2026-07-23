@@ -29,6 +29,7 @@ func SetupRoutes(router *gin.Engine) {
 
 	router.POST("/signup", authController.Signup)
 	router.POST("/login", authController.Login)
+	router.GET("/profile", middleware.AuthMiddleware(), authController.GetProfile)
 
 	// -------------------------
 	// Protected Routes

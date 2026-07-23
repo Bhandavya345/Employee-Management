@@ -14,6 +14,7 @@ import (
 type AuthService interface {
 	Signup(user *models.User) error
 	Login(email, password string) (string, error)
+	GetProfile(userID uint) (*models.User, error)
 }
 
 type authService struct {
@@ -70,12 +71,27 @@ func (s *authService) Login(email, password string) (string, error) {
 	}
 
 	// Generate JWT Token
-	token, err := utils.GenerateJWT(user.ID, user.Email, user.Role)
-
-	fmt.Printf("Token generated for user ID: %d, Email: %s, Role: %s", user.ID, user.Email, user.Role)
+	token, err := utils.GenerateJWT(
+		user.ID,
+		user.Email,
+		user.Role,
+		user.RoleID,
+	)
+	fmt.Printf("Token generated for user ID: %d, Email: %s, Role: %v,RoleID %d", user.ID, user.Email, user.Role, user.RoleID)
 	if err != nil {
 		return "", err
 	}
 
 	return token, nil
+}
+
+func (s *authService) GetProfile(userID uint) (*models.User, error) {
+
+	user, err := s.repo.GetUserByID(userID)
+	fmt.Println(user.ID)
+	if err != nil {
+		return nil, err
+	}
+
+	return user, nil
 }

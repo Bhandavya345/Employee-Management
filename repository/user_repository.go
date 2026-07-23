@@ -2,6 +2,7 @@ package repository
 
 import (
 	"errors"
+	"fmt"
 
 	"github.com/Bhandavya345/Employee-Management/database"
 	"github.com/Bhandavya345/Employee-Management/models"
@@ -47,7 +48,8 @@ func (r *UserRepo) GetUserByID(id uint) (*models.User, error) {
 
 	var user models.User
 
-	err := database.DB.First(&user, id).Error
+	err := database.DB.Where("id = ?", id).First(&user).Error
+	fmt.Printf("GetUserByID: Retrieved user: %+v, Error: %v\n", user, err)
 
 	if errors.Is(err, gorm.ErrRecordNotFound) {
 		return nil, errors.New("user not found")
